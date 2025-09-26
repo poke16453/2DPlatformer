@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36119.2 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DPlatformer", "2DPlatformer\2DPlatformer.csproj", "{0C1F42B8-FDDA-4A01-84BF-F81DA11836A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGameLibrary", "MonoGameLibrary\MonoGameLibrary.csproj", "{038AA3DE-BC31-434D-A75C-AEA150C27796}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0C1F42B8-FDDA-4A01-84BF-F81DA11836A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C1F42B8-FDDA-4A01-84BF-F81DA11836A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C1F42B8-FDDA-4A01-84BF-F81DA11836A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{038AA3DE-BC31-434D-A75C-AEA150C27796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038AA3DE-BC31-434D-A75C-AEA150C27796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038AA3DE-BC31-434D-A75C-AEA150C27796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038AA3DE-BC31-434D-A75C-AEA150C27796}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
