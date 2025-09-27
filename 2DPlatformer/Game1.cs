@@ -13,7 +13,7 @@ public class Game1 : Core
     public Game1() : base("MogaMan 2.5", 1280, 720, false)
     {
         //_graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = "Content";
+        //Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
 
