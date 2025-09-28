@@ -6,18 +6,25 @@ namespace MonoGameLibrary.Graphics;
 
 public class Tile
 {
-    public Tile(Char identifier, Texture2D texture)
+    public Tile(Char identifier, string name, Texture2D texture, bool dealsDamage, bool iscollidable)
     {
         _identifier = identifier;
-        _texture = ResizeTexture(texture);
-
-        
+        _name = name;
+        _texture = texture;
+        _dealsDamage = dealsDamage;
+        _iscollidable = iscollidable;
     }
     public char _identifier;
 
+    public string _name;
+
     public Texture2D _texture;
 
-    public Vector2 _size;
+    public bool _dealsDamage;
+
+    public bool _iscollidable;
+
+    //public Vector2 _size;
 
     public void DrawTile(SpriteBatch spriteBatch, Vector2 position)
     {
@@ -29,12 +36,8 @@ public class Tile
             Color.White,
             0.0f,
             Vector2.Zero,
-            1f,
+            2f,
             SpriteEffects.None,
             0.0f);
-    }
-    private static Texture2D ResizeTexture(Texture2D texture2D)
-    {
-        return texture2D;
     }
 }

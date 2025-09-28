@@ -12,7 +12,7 @@ public class Game1 : Core
     //private SpriteBatch _spriteBatch;
     private Level level = new();
 
-    public Game1() : base("MogaMan 2.5", 1350, 1350, false)
+    public Game1() : base("MogaMan 2.5", 1920, 1080, false)
     {
         //_graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
@@ -25,8 +25,6 @@ public class Game1 : Core
 
         
         base.Initialize();
-        level.InitializeTiles(GraphicsDevice);
-
     }
 
     protected override void LoadContent()
@@ -34,7 +32,7 @@ public class Game1 : Core
         //_spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // TODO: use this.Content to load your game content here
-
+        level.LoadContent(GraphicsDevice, Content);
         base.LoadContent();
     }
 

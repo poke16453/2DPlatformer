@@ -1,36 +1,30 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using MonoGameLibrary.Graphics;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using MogaMan.Game.Obj;
 
 namespace MogaMan.Game;
 
 public class Level
 {
     string[] level;
+    public TileManager tileManager = new();
 
-    Tile ground;
-
-    Dictionary<char, Tile> tiles = [];
-
-    public void InitializeTiles(GraphicsDevice device)
+    public void LoadContent(GraphicsDevice device, ContentManager Content)
     {
-        ReadLevelTextFile();
-        
-        ground = new('x', Texture2D.FromFile(device, "C:\\Users\\jacob\\Desktop\\gamesIveMade\\2DPlatformerMonoGames\\2DPlatformer\\2DPlatformer\\Grass.jpg"));
-        tiles.Add(ground._identifier, ground);
-    }
-    // 6x6
-    public void ReadLevelTextFile()
-    {
-        level = File.ReadAllLines("C:\\Users\\jacob\\Desktop\\gamesIveMade\\2DPlatformerMonoGames\\2DPlatformer\\2DPlatformer\\levelData.txt");       
-    }
+        ReadTxtLevelFile(Content);
 
+        tileManager.LoadContent(Content);
+    }
+    private void ReadTxtLevelFile(ContentManager Content)
+    {        
+        var levelPath = Path.Combine(Content.RootDirectory, "levelData.txt");
+        using var stream = TitleContainer.OpenStream(levelPath);
+        level = File.ReadAllLines(levelPath);
+    }
     public void Draw(SpriteBatch spriteBatch)
     {
         //Debug.WriteLine(level);
@@ -39,18 +33,19 @@ public class Level
 
     private void DrawLevel(SpriteBatch spriteBatch)
     {
+        // Draws from a grid of 9 by 5
         int row = 0;
-        int column = 0;
+        int column;
         for (int i = 0; i < level.Length; i++)
         {   
             column = 0;
             foreach (char c in level[i])
             {
-                try { tiles[c].DrawTile(spriteBatch, new(column, row)); }
+                try { tileManager.tiles[c].DrawTile(spriteBatch, new(column, row)); }
                 catch { Debug.WriteLine("Tile identifier not found in list: " + c); }
-                column += 225;
+                column += (int)tileManager.tileSize.X;
             }
-            row += 225;
+            row += (int)tileManager.tileSize.Y;
         }
     }
 }
