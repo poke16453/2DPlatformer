@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MogaMan.Game;
 using MonoGameLibrary;
 
 namespace _2DPlatformer;
@@ -9,8 +10,9 @@ public class Game1 : Core
 {
     //private GraphicsDeviceManager _graphics;
     //private SpriteBatch _spriteBatch;
+    private Level level = new();
 
-    public Game1() : base("MogaMan 2.5", 1280, 720, false)
+    public Game1() : base("MogaMan 2.5", 1350, 1350, false)
     {
         //_graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
@@ -21,7 +23,10 @@ public class Game1 : Core
     {
         // TODO: Add your initialization logic here
 
+        
         base.Initialize();
+        level.InitializeTiles(GraphicsDevice);
+
     }
 
     protected override void LoadContent()
@@ -29,6 +34,8 @@ public class Game1 : Core
         //_spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // TODO: use this.Content to load your game content here
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -46,6 +53,11 @@ public class Game1 : Core
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         // TODO: Add your drawing code here
+        SpriteBatch.Begin();
+
+        level.Draw(SpriteBatch);
+
+        SpriteBatch.End();
 
         base.Draw(gameTime);
     }
