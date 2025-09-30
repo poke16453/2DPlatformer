@@ -27,5 +27,6 @@ public class EntityBase
 
     }
 
+    // Change to Vector 2D
     float[] position = {0, 0};    
 }

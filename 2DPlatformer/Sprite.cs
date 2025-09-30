@@ -16,6 +16,15 @@ class Sprite
     private Color spriteColor;
     private SpriteBatch spriteBatch;
 
+    public Sprite(Texture2D texture, float spriteX, float spriteY, GraphicsDevice graphicsDevice)
+    {
+        this.spriteBatch = new SpriteBatch(graphicsDevice);
+        this.texture = texture;
+        this.spriteX = spriteX;
+        this.spriteY = spriteY;
+        this.spriteColor = Color.White;
+    }
+
     public void setColor(Color newColor) { this.spriteColor = newColor; }
     
     public Color getColor() { return this.spriteColor; }
@@ -41,13 +50,5 @@ class Sprite
         spriteBatch.Begin();
         spriteBatch.Draw(this.texture, new Vector2(this.spriteX, this.spriteY), this.spriteColor);
         spriteBatch.End();
-    }
-    public Sprite(Texture2D texture, float spriteX, float spriteY, GraphicsDevice graphicsDevice)
-    {
-        this.spriteBatch = new SpriteBatch(graphicsDevice);
-        this.texture = texture;
-        this.spriteX = spriteX;
-        this.spriteY = spriteY;
-        this.spriteColor = Color.White;
     }
 }
