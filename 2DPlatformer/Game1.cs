@@ -1,8 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MogaMan.Game;
 using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+using System.Collections.Generic;
 
 namespace _2DPlatformer;
 
@@ -10,12 +13,14 @@ public class Game1 : Core
 {
     //private GraphicsDeviceManager _graphics;
     //private SpriteBatch _spriteBatch;
+    GameplayState gameplayState;
+    List<BaseState> stateContainer;
     private Level level = new();
 
     public Game1() : base("MogaMan 2.5", 1350, 1350, false)
     {
         //_graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = "Content";
+        //Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
 
@@ -23,10 +28,11 @@ public class Game1 : Core
     {
         // TODO: Add your initialization logic here
 
-        
         base.Initialize();
-        level.InitializeTiles(GraphicsDevice);
-
+        stateContainer = new List<BaseState>();
+        gameplayState = new GameplayState(Content, GraphicsDevice);
+        gameplayState.onEnter();
+        stateContainer.Add(gameplayState);
     }
 
     protected override void LoadContent()
@@ -44,6 +50,10 @@ public class Game1 : Core
             Exit();
 
         // TODO: Add your update logic here
+        foreach (BaseState state in stateContainer)
+        {
+            state.update();
+        }
 
         base.Update(gameTime);
     }
@@ -53,11 +63,10 @@ public class Game1 : Core
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         // TODO: Add your drawing code here
-        SpriteBatch.Begin();
-
-        level.Draw(SpriteBatch);
-
-        SpriteBatch.End();
+        foreach (BaseState state in stateContainer)
+        {
+            state.draw();
+        }
 
         base.Draw(gameTime);
     }
