@@ -64,6 +64,12 @@ public class Game1 : Core
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         // TODO: Add your drawing code here
+        SpriteBatch.Begin();
+
+        level.Draw(SpriteBatch);
+
+        SpriteBatch.End();
+
         foreach (BaseState state in stateContainer)
         {
             state.draw();
